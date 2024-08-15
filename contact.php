@@ -2,9 +2,9 @@
 if( isset($_POST) ){
     $formok = true;
 
-	$field_name = $_POST['name'];
-	$field_email = $_POST['email'];
-	$field_message = $_POST['message'];
+	$field_name = $_POST["name"];
+	$field_email = $_POST["email"];
+	$field_message = $_POST["message"];
 
 	$mail_to = 'fabi@fabianacorrea.com';
 	$subject = 'Quer falar comigo? • Mensagem de '.$field_name;
@@ -12,7 +12,7 @@ if( isset($_POST) ){
 	$ipaddress = $_SERVER['REMOTE_ADDR'];
 	$datetime = date('d/m/Y H:i:s');
 
-	if(empty($name)){
+	if(empty($field_name)){
 		$formok = false;
 		?>
 		<script language="javascript" type="text/javascript">
@@ -22,7 +22,7 @@ if( isset($_POST) ){
 	<?php
 	}
 
-	if(empty($email)){
+	if(empty($field_email)){
 		$formok = false;
 		?>
 		<script language="javascript" type="text/javascript">
@@ -31,7 +31,7 @@ if( isset($_POST) ){
 		</script>
 	<?php
 	//validate email address is valid 
-	}elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+	}elseif(!filter_var($field_email, FILTER_VALIDATE_EMAIL)){
 		$formok = false;
 		?>
 		<script language="javascript" type="text/javascript">
@@ -41,7 +41,7 @@ if( isset($_POST) ){
 	<?php
 	}
 
-	if(empty($message)){
+	if(empty($field_message)){
 		$formok = false;
 		?>
 		<script language="javascript" type="text/javascript">
@@ -51,7 +51,7 @@ if( isset($_POST) ){
 	<?php
 	}
 	//validate message is greater than 20 characters 
-	elseif(strlen($message) < 20){
+	elseif(strlen($field_message) < 20){
 		$formok = false;
 		?>
 		<script language="javascript" type="text/javascript">
