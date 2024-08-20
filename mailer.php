@@ -1,4 +1,17 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'src/Exception.php';
+require 'src/PHPMailer.php';
+require 'src/SMTP.php';
+require 'src/DotEnv.php';
+
+use DevCoder\DotEnv;
+$absolutePathToEnvFile = __DIR__ . '/.env';
+(new DotEnv($absolutePathToEnvFile))->load();
+
 session_start();
 
 if (isset($_SESSION['last_submit']) && time() - $_SESSION['last_submit'] < 60) {
@@ -71,31 +84,48 @@ if( isset($_POST) ){
 	}
 
 	if($formok){
+        $mail = new PHPMailer;
+
+        $mail->isSMTP();
+
+        $mail->Host = getenv('SMTP_HOST');  // Specify your SMTP server address
+        $mail->Port = getenv('SMTP_PORT');  // Specify your SMTP port (may vary)
+        $mail->SMTPAuth = true;           // Enable SMTP authentication
+        $mail->Username = getenv('SMTP_USERNAME'); // Your SMTP username
+        $mail->Password = getenv('SMTP_PASSWORD'); // Your SMTP password
+
+        $mail->setFrom($field_email, $field_name);
+
+        $mail->addAddress($mail_to);
+
+        $mail->Subject = $subject;
+
 		$body_message = 'De: '.$field_name."\n";
-	$body_message .= 'E-mail: '.$field_email."\n";
-	$body_message .= 'Mensagem: '.$field_message."\n";
-	$body_message .= 'Enviada em: '.$datetime."\n";
-	$body_message .= 'A partir do IP: '.$ipaddress;
+        $body_message .= 'E-mail: '.$field_email."\n";
+        $body_message .= 'Mensagem: '.$field_message."\n";
+        $body_message .= 'Enviada em: '.$datetime."\n";
+        $body_message .= 'A partir do IP: '.$ipaddress;
 
-	$headers = 'From: '.$field_email."\r\n";
-	$headers .= 'Reply-To: '.$field_email."\r\n";
+        $mail->Body = $body_message;
 
-	$mail_status = mail($mail_to, $subject, $body_message, $headers);
-	}
-}
-
-	if ($mail_status) { ?>
-		<script language="javascript" type="text/javascript">
+        
+        if (!$mail->send()) { ?>
+            <script language="javascript" type="text/javascript">
 			alert('Mensagem enviada com sucesso.');
 			window.location = 'index.html';
-		</script>
-	<?php
-	} 	else { ?>
-		<script language="javascript" type="text/javascript">
-			alert('O envio falhou, por favor escreva diretamente para fabi@fabianacorrea.com');
+		    </script>
+            <?php
+        } else { ?>
+            <script language="javascript" type="text/javascript">
+			alert('O envio falhou, por favor escreva diretamente para info@fabianacorrea.com');
 			window.location = 'index.html';
-		</script> 
-	<?php
-	}
+		    </script> 
+            <?php
+        }
+        
+        
+    }
+}
+
 
 ?>
