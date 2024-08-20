@@ -176,6 +176,10 @@ input, select, textarea {
 		margin: 0 0 2em 0;
 	}
 
+		.wrapper.style3 p {
+			color: #b74e91;
+		}
+
 	h1 {
 		color: #fb8136;
 		font-family: "Prata", serif;
@@ -193,6 +197,14 @@ input, select, textarea {
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 			color: inherit;
 			text-decoration: none;
+		}
+
+		.wrapper.style3 h2 {
+			color: #b74e91;
+		}
+
+		.wrapper.style3 h3 {
+			color: #b74e91;
 		}
 
 	h1 {
@@ -2533,7 +2545,7 @@ input, select, textarea {
 			width: 2.5em;
 			height: 2.5em;
 			display: block;
-			background: #ffffff;
+			background: rgba(255, 255, 255, 0.35);
 			border-radius: 100%;
 			color: #312450;
 			text-align: center;
