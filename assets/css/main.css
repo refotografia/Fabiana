@@ -177,7 +177,7 @@ input, select, textarea {
 	}
 
 		.wrapper.style3 p {
-			color: #b74e91;
+			color: #3f275a; /* style3textcolor */
 		}
 
 	h1 {
@@ -200,11 +200,11 @@ input, select, textarea {
 		}
 
 		.wrapper.style3 h2 {
-			color: #b74e91;
+			color: #3f275a; /* style3textcolor */
 		}
 
 		.wrapper.style3 h3 {
-			color: #b74e91;
+			color: #3f275a; /* style3textcolor */
 		}
 
 	h1 {
@@ -2574,7 +2574,7 @@ input, select, textarea {
 				}
 
 				.wrapper.style3 .icon.major:before {
-					color: #b74e91;
+					color: #3f275a; /* style3textcolor */
 				}
 
 				.wrapper.style3-alt .icon.major:before {
@@ -3277,7 +3277,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style3 {
-			background-color: #f0b1d5;
+			background-color: #fed8ef; /* fundo rosa era f0b1d5, depois fed8ef */
 		}
 
 		.wrapper.style3-alt {
